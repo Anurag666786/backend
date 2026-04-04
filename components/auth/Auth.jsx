@@ -4,7 +4,10 @@ import Signup from "./Signup";
 
 const Auth = () => {
   return (
-    <Tabs defaultValue="login" className="w-full">
+    <Tabs
+      defaultValue="login"
+      className="w-full bg-zinc-900 p-4 rounded-2xl shadow-2xl"
+    >
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="login">Login</TabsTrigger>
         <TabsTrigger value="signup">Signup</TabsTrigger>

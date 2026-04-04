@@ -27,8 +27,10 @@ export default function Home() {
   }
 
   return (
-    <div className="grid w-[700px] grid-cols-2 px-10 py-10 font-sans dark:bg-black">
-      {loading ? <h1>loading...</h1> : <Auth />}
+    <div className="h-screen flex items-center justify-center bg-black">
+      <div className="w-full max-w-md">
+        {loading ? <h1>loading...</h1> : <Auth />}
+      </div>
     </div>
   );
 }
