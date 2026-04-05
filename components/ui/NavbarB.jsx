@@ -45,10 +45,16 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "Features", href: "#" },
-    { name: "Integration", href: "#" },
-    { name: "About", href: "#" },
+    { name: "Home", href: "https://frontend-phi-inky-40.vercel.app/" },
+    {
+      name: "Features",
+      href: "https://frontend-phi-inky-40.vercel.app/features",
+    },
+    {
+      name: "Integration",
+      href: "https://frontend-phi-inky-40.vercel.app/integration",
+    },
+    { name: "About", href: "https://frontend-phi-inky-40.vercel.app/about" },
   ];
 
   return (
