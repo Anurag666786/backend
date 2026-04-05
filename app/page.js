@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!loading && user) {
-      router.push("/introduction");
+      router.push("/createblog");
     }
   }, [user, loading, router]);
 

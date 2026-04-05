@@ -99,22 +99,6 @@ export default function Navbar() {
         {/* Mobile Menu Controls */}
         <div className="flex md:hidden items-center space-x-4">
           <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full text-muted-foreground hover:bg-secondary hover:text-foreground transition-all duration-300"
-            aria-label="Toggle Dark Mode"
-          >
-            <div className="relative w-5 h-5 flex items-center justify-center">
-              <Sun
-                className={`absolute transition-all duration-500 transform ${theme === "dark" ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"}`}
-                size={20}
-              />
-              <Moon
-                className={`absolute transition-all duration-500 transform ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"}`}
-                size={20}
-              />
-            </div>
-          </button>
-          <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 -mr-2 text-foreground focus:outline-none"
             aria-label="Toggle Navigation Menu"
