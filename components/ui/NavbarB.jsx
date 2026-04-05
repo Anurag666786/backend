@@ -45,20 +45,20 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: "Home", href: "/" },
+    { name: "Create Blog", href: "/createblog" },
     {
       name: "Blogs",
       href: "/blogs",
     },
     {
       name: "Features",
-      href: "https://frontend-phi-inky-40.vercel.app/features",
+      href: "/features",
     },
     {
       name: "Integration",
       href: "https://frontend-phi-inky-40.vercel.app/integration",
     },
-    { name: "About", href: "https://frontend-phi-inky-40.vercel.app/about" },
+    { name: "About", href: "/about" },
   ];
 
   return (

@@ -29,7 +29,7 @@ const itemVariants = {
   },
 };
 
-const Dashboard = () => {
+const CreateBlog = () => {
   const { user, loading } = useAuth();
   const router = useRouter();
 
@@ -183,4 +183,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default CreateBlog;
