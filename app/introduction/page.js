@@ -91,7 +91,7 @@ export default function Home() {
           >
             Ideas that shape <br className="hidden md:block" />
             <span className="text-neutral-500 animate-pulse">
-              the modern mind.
+              the modern mind
             </span>
           </motion.h1>
 
@@ -107,10 +107,7 @@ export default function Home() {
           {/* Get Started Button */}
           <motion.div variants={itemVariants}>
             <button className="group relative inline-flex items-center justify-center px-9 py-3 text-md font-medium text-black bg-white/100 border border-white/10 rounded-xl backdrop-blur-md hover:bg-white/70 transition-all duration-300">
-              <Link
-                href="https://backend-n546l9pjo-anurag-developers.vercel.app/"
-                className="relative z-10"
-              >
+              <Link href="./createblog" className="relative z-10">
                 Get Started →
               </Link>
 
@@ -137,7 +134,7 @@ export default function Home() {
               Selected Works
             </h2>
             <Link
-              href="https://backend-n546l9pjo-anurag-developers.vercel.app/"
+              href="./blogs"
               className="text-sm hover:text-white transition-colors flex items-center gap-2"
             >
               View all <span className="text-lg">→</span>
@@ -200,7 +197,7 @@ export default function Home() {
             Editor's Choice
           </h2>
           <Link
-            href="https://backend-n546l9pjo-anurag-developers.vercel.app/"
+            href="./blogs"
             className="text-sm hover:text-white transition-colors flex items-center gap-2"
           >
             View all <span className="text-lg">→</span>
@@ -245,7 +242,7 @@ export default function Home() {
 
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mt-4 mb-6">
               The art of slowing <br />
-              <span className="text-neutral-500">down in a fast world.</span>
+              <span className="text-neutral-500">down in a fast world</span>
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -314,7 +311,7 @@ export default function Home() {
 
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mt-4 mb-6">
               Technology replacing <br />
-              <span className="text-neutral-500">humans in this world.</span>
+              <span className="text-neutral-500">humans in this world</span>
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -384,7 +381,7 @@ export default function Home() {
 
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mt-4 mb-6">
               Unhealthy eating <br />
-              <span className="text-neutral-500">leading to diseases.</span>
+              <span className="text-neutral-500">leading to diseases</span>
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -453,7 +450,7 @@ export default function Home() {
 
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mt-4 mb-6">
               Esports are now <br />
-              <span className="text-neutral-500">more than just a game.</span>
+              <span className="text-neutral-500">more than just a game</span>
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -523,7 +520,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mt-4 mb-6">
               Europe's immigration crisis
               <br />
-              <span className="text-neutral-500">more than just a game.</span>
+              <span className="text-neutral-500">more than just a game</span>
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -568,9 +565,9 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
-              Go beyond reading. <br />
+              Go beyond reading <br />
               <span className="text-neutral-500 animate-pulse">
-                Enter the inner circle.
+                Enter the inner circle
               </span>
             </h2>
 
@@ -682,7 +679,7 @@ export default function Home() {
             <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
               Built for the <br />
               <span className="text-neutral-500 animate-pulse">
-                modern intellectual.
+                modern intellectual
               </span>
             </h2>
 
@@ -776,7 +773,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
               Trusted by thinkers <br />
               <span className="text-neutral-500 animate-pulse">
-                around the world.
+                around the world
               </span>
             </h2>
 
@@ -788,10 +785,10 @@ export default function Home() {
           {/* Stats Grid */}
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { number: "120K+", label: "Monthly Readers" },
-              { number: "45+", label: "Countries Reached" },
-              { number: "3.2M+", label: "Articles Read" },
-              { number: "98%", label: "Positive Feedback" },
+              { number: "--", label: "Monthly Readers" },
+              { number: "192+", label: "Countries Reached" },
+              { number: "--", label: "Articles Read" },
+              { number: "100%", label: "Positive Feedback" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -873,7 +870,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
               Designed for those who <br />
               <span className="text-neutral-500 animate-pulse">
-                think deeper.
+                think deeper
               </span>
             </h2>
 
@@ -884,7 +881,7 @@ export default function Home() {
 
             <div className="flex items-center gap-4">
               <Link
-                href="https://backend-n546l9pjo-anurag-developers.vercel.app/"
+                href="./blogs"
                 className="px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
               >
                 Explore Articles

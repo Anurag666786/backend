@@ -74,7 +74,9 @@ const BlogsPage = () => {
             className="text-5xl md:text-6xl font-bold tracking-tight text-white"
           >
             Latest{" "}
-            <span className="text-neutral-500 italic font-serif">Insights</span>
+            <span className="text-neutral-500 italic font-serif animate-pulse">
+              Insights
+            </span>
           </motion.h1>
 
           <motion.p
