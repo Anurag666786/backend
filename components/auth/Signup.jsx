@@ -41,7 +41,14 @@ const Signup = () => {
       return;
     }
 
-    if (data) {
+    if (data && data.user) {
+      await client.from("profiles").insert([
+        {
+          id: data.user.id,
+          name: name,
+        },
+      ]);
+
       if (data.session) {
         await client.auth.signOut();
       }

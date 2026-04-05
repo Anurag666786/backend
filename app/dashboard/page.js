@@ -5,10 +5,16 @@ import useAuth from "@/hooks/useAuth";
 import client from "@/api/client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useState } from "react";
+import { uploadImage } from "@/lib/uploadImage";
+import { createPost } from "@/lib/createPost";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -23,6 +29,29 @@ const Dashboard = () => {
     } else {
       toast.success("Logged out successfully");
       router.push("/");
+    }
+  };
+  const handleCreatePost = async () => {
+    let imageUrl = null;
+
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+
+    const { data, error } = await createPost({
+      title,
+      content,
+      imageUrl,
+    });
+
+    if (data) {
+      toast.success("Post created!");
+      setTitle("");
+      setContent("");
+      setImage(null);
+    }
+    if (error) {
+      toast.error(error.message);
     }
   };
 
@@ -60,6 +89,38 @@ const Dashboard = () => {
             Sign out
           </button>
         </div>
+      </div>
+
+      <div className="mt-10 w-full max-w-2xl bg-white p-6 rounded-xl shadow">
+        <h2 className="text-2xl font-bold mb-4">Create Blog</h2>
+
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full mb-3 p-2 border rounded"
+        />
+
+        <textarea
+          placeholder="Content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="w-full mb-3 p-2 border rounded"
+        />
+
+        <input
+          type="file"
+          onChange={(e) => setImage(e.target.files[0])}
+          className="mb-3"
+        />
+
+        <button
+          onClick={handleCreatePost}
+          className="bg-black text-white px-4 py-2 rounded"
+        >
+          Publish
+        </button>
       </div>
     </div>
   );
