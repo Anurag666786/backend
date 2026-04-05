@@ -45,6 +45,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
+    {
+      name: "Introduction",
+      href: "/introduction",
+    },
     { name: "Create Blog", href: "/createblog" },
     {
       name: "Blogs",
@@ -54,10 +58,7 @@ export default function Navbar() {
       name: "Features",
       href: "/features",
     },
-    {
-      name: "Integration",
-      href: "https://frontend-phi-inky-40.vercel.app/integration",
-    },
+
     { name: "About", href: "/about" },
   ];
 
