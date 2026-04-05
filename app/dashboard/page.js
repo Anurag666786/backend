@@ -48,6 +48,9 @@ const Dashboard = () => {
             <p className="text-sm font-medium uppercase tracking-wider text-gray-500">
               Welcome back
             </p>
+            <p className="text-lg font-bold text-gray-800">
+              {user.user_metadata?.name}
+            </p>
             <p className="text-lg font-bold text-gray-800">{user.email}</p>
           </div>
           <button

@@ -17,10 +17,11 @@ const Login = () => {
     e.preventDefault();
 
     const email = e.target[0]?.value;
-    const password = e.target[1]?.value;
-    console.log(email, password);
+    const name = e.target[1]?.value;
+    const password = e.target[2]?.value;
+    console.log(email, password, name);
 
-    if (!email || !password) {
+    if (!email || !password || !name) {
       toast.error("Please fill all the fields");
       return;
     }
@@ -28,6 +29,11 @@ const Login = () => {
     const { data, error } = await client.auth.signInWithPassword({
       email,
       password,
+      options: {
+        data: {
+          name,
+        },
+      },
     });
 
     if (data) {
@@ -55,6 +61,16 @@ const Login = () => {
                 id="email"
                 required
                 placeholder="example@gmail.com"
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label htmlFor="name">Name</label>
+              <input
+                type="name"
+                id="name"
+                required
+                placeholder="your username"
               />
             </div>
 

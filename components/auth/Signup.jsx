@@ -17,10 +17,11 @@ const Signup = () => {
     e.preventDefault();
 
     const email = e.target[0]?.value;
-    const password = e.target[1]?.value;
-    console.log(email, password);
+    const name = e.target[1]?.value;
+    const password = e.target[2]?.value;
+    console.log(email, password, name);
 
-    if (!email || !password) {
+    if (!email || !password || !name) {
       toast.error("Please fill all the fields");
       return;
     }
@@ -28,6 +29,11 @@ const Signup = () => {
     const { data, error } = await client.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          name,
+        },
+      },
     });
 
     if (error) {
@@ -71,6 +77,22 @@ const Signup = () => {
                   id="email"
                   required
                   placeholder="example@gmail.com"
+                  className="w-full px-4 py-2.5 rounded-lg bg-[#0f0f0f] border border-white/10 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-white/20 focus:border-white/20 transition-all duration-200"
+                />
+              </div>
+
+              <div className="grid gap-2">
+                <label
+                  htmlFor="name"
+                  className="text-sm text-gray-300 font-medium"
+                >
+                  Name
+                </label>
+                <input
+                  type="name"
+                  id="name"
+                  required
+                  placeholder="your username"
                   className="w-full px-4 py-2.5 rounded-lg bg-[#0f0f0f] border border-white/10 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-white/20 focus:border-white/20 transition-all duration-200"
                 />
               </div>
