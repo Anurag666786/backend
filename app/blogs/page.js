@@ -3,10 +3,34 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "@/lib/getPosts";
 import NavbarB from "@/components/ui/NavbarB";
+import { motion, AnimatePresence } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 const BlogsPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // NEW: selected blog state (UI only, no logic change)
+  const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -19,10 +43,10 @@ const BlogsPage = () => {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="flex h-screen items-center justify-center bg-[#0a0a0a] text-white">
         <div className="text-center">
-          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-black border-t-transparent mx-auto"></div>
-          <h1 className="text-2xl font-semibold text-gray-700 font-sans tracking-tight">
+          <div className="mb-6 h-12 w-12 animate-spin rounded-full border-4 border-white border-t-transparent mx-auto"></div>
+          <h1 className="text-2xl font-semibold tracking-tight">
             Loading Stories...
           </h1>
         </div>
@@ -31,71 +55,159 @@ const BlogsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-[#0a0a0a] text-neutral-300 relative overflow-hidden">
+      {/* Ambient Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70vw] h-[400px] bg-white/[0.03] blur-[120px] rounded-full pointer-events-none" />
+
       <NavbarB />
-      
-      <main className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center">
-          <h1 className="mb-4 text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-            Latest <span className="text-gray-500 italic font-serif">Insights</span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-xl text-gray-500">
-            Explore thoughts, stories and experiences from our creative community.
-          </p>
-        </div>
+
+      <main className="mx-auto max-w-7xl px-6 py-24 relative z-10">
+        {/* Header */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="mb-20 text-center"
+        >
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl md:text-6xl font-bold tracking-tight text-white"
+          >
+            Latest{" "}
+            <span className="text-neutral-500 italic font-serif">Insights</span>
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            className="mt-6 max-w-2xl mx-auto text-lg text-neutral-400"
+          >
+            Explore thoughts, stories and experiences from our creative
+            community.
+          </motion.p>
+        </motion.div>
 
         {posts.length === 0 ? (
-          <div className="flex min-h-[400px] flex-col items-center justify-center rounded-3xl bg-white p-12 shadow-sm border border-gray-100">
-            <div className="mb-4 text-6xl text-gray-200">✍️</div>
-            <h3 className="text-xl font-bold text-gray-900">No stories yet</h3>
-            <p className="mt-2 text-gray-500">Be the first one to share something amazing!</p>
+          <div className="flex min-h-[400px] flex-col items-center justify-center rounded-3xl bg-neutral-900/40 p-12 border border-neutral-800 backdrop-blur-xl">
+            <div className="mb-4 text-6xl text-neutral-700">✍️</div>
+            <h3 className="text-xl font-bold text-white">No stories yet</h3>
+            <p className="mt-2 text-neutral-500">
+              Be the first one to share something amazing!
+            </p>
           </div>
         ) : (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {posts.map((post) => (
-              <article
+              <motion.article
                 key={post.id}
-                className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                variants={itemVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group cursor-pointer rounded-3xl border border-neutral-800 bg-neutral-900/40 backdrop-blur-xl overflow-hidden transition-all duration-500"
+                onClick={() => setSelectedPost(post)}
               >
                 {post.image_url && (
                   <div className="overflow-hidden">
                     <img
                       src={post.image_url}
                       alt={post.title}
-                      className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="aspect-[16/9] w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
                 )}
-                
-                <div className="flex flex-1 flex-col p-8">
-                  <div className="mb-4 flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-gray-400">
-                    <span>{new Date(post.created_at).toLocaleDateString()}</span>
+
+                <div className="p-7 flex flex-col h-full">
+                  <div className="mb-4 flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-500">
+                    <span>
+                      {new Date(post.created_at).toLocaleDateString()}
+                    </span>
                     <span>•</span>
-                    <span className="text-black">{post.profiles?.name || "Unknown Author"}</span>
+                    <span className="text-white">
+                      {post.profiles?.name || "Unknown Author"}
+                    </span>
                   </div>
-                  
-                  <h2 className="mb-3 text-2xl font-bold leading-tight text-gray-900 group-hover:text-black transition-colors">
+
+                  <h2 className="text-2xl font-semibold text-white mb-3 group-hover:text-neutral-300 transition">
                     {post.title}
                   </h2>
-                  
-                  <p className="mb-8 flex-1 text-base leading-relaxed text-gray-500 line-clamp-3">
+
+                  <p className="text-neutral-400 text-sm leading-relaxed line-clamp-3 flex-grow">
                     {post.content}
                   </p>
-                  
-                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-gray-100/50">
-                    <button className="text-sm font-bold uppercase tracking-widest text-black group-hover:underline underline-offset-4">
+
+                  <div className="mt-6 flex items-center justify-between pt-5 border-t border-neutral-800">
+                    <span className="text-xs tracking-widest uppercase text-neutral-500">
                       Read Story
-                    </button>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-xl transition-colors group-hover:bg-black group-hover:text-white">
+                    </span>
+                    <span className="text-lg group-hover:translate-x-1 transition">
                       →
-                    </div>
+                    </span>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         )}
       </main>
+
+      {/* ================= FULL BLOG VIEW (NEW) ================= */}
+      <AnimatePresence>
+        {selectedPost && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl"
+            >
+              {/* Image */}
+              {selectedPost.image_url && (
+                <div className="overflow-hidden rounded-t-3xl">
+                  <img
+                    src={selectedPost.image_url}
+                    alt={selectedPost.title}
+                    className="w-full object-cover max-h-[400px]"
+                  />
+                </div>
+              )}
+
+              <div className="p-8">
+                <div className="mb-4 text-xs uppercase tracking-widest text-neutral-500">
+                  {new Date(selectedPost.created_at).toLocaleDateString()} •{" "}
+                  <span className="text-white">
+                    {selectedPost.profiles?.name || "Unknown Author"}
+                  </span>
+                </div>
+
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  {selectedPost.title}
+                </h1>
+
+                <p className="text-neutral-300 leading-relaxed whitespace-pre-line">
+                  {selectedPost.content}
+                </p>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedPost(null)}
+                  className="mt-10 px-6 py-3 rounded-full border border-neutral-700 text-sm hover:bg-white hover:text-black transition-all duration-300"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
