@@ -51,6 +51,10 @@ export default function Navbar() {
     },
     { name: "Create Blog", href: "/createblog" },
     {
+      name: "MY Blogs",
+      href: "/myposts",
+    },
+    {
       name: "Blogs",
       href: "/blogs",
     },
