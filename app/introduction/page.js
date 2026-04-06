@@ -253,7 +253,7 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <Link
-                href="#"
+                href="./blogs"
                 className="px-6 py-3 border border-neutral-700 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300"
               >
                 Read Story
@@ -323,7 +323,7 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <Link
-                href="#"
+                href="./blogs"
                 className="px-6 py-3 border border-neutral-700 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300"
               >
                 Read Story
@@ -392,7 +392,7 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <Link
-                href="#"
+                href="./blogs"
                 className="px-6 py-3 border border-neutral-700 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300"
               >
                 Read Story
@@ -461,7 +461,7 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <Link
-                href="#"
+                href="./blogs"
                 className="px-6 py-3 border border-neutral-700 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300"
               >
                 Read Story
@@ -520,7 +520,9 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mt-4 mb-6">
               Europe's immigration crisis
               <br />
-              <span className="text-neutral-500">more than just a game</span>
+              <span className="text-neutral-500">
+                more than just a political debate
+              </span>
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -531,7 +533,7 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <Link
-                href="#"
+                href="./blogs"
                 className="px-6 py-3 border border-neutral-700 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-all duration-300"
               >
                 Read Story
