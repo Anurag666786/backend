@@ -9,7 +9,7 @@ import NavbarB from "@/components/ui/NavbarB";
 import client from "@/api/client";
 import { deletePost } from "@/lib/deletePost";
 import { toast } from "sonner";
-import { Trash2 } from "lucide-react";
+import { Trash2, LogOut } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -141,34 +141,45 @@ const MyPostsPage = () => {
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="mb-12 inline-flex flex-col items-center sm:flex-row gap-6 px-8 py-6 rounded-3xl border border-neutral-800 bg-neutral-900/40 backdrop-blur-xl"
+            className="mb-12 flex flex-col md:flex-row items-center justify-between gap-8 px-8 py-6 rounded-3xl border border-neutral-800 bg-neutral-900/40 backdrop-blur-xl"
           >
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center text-2xl font-bold text-white border border-neutral-700 shadow-inner">
-              {user.user_metadata?.name?.charAt(0) ||
-                user.email?.charAt(0) ||
-                "U"}
-            </div>
-            <div className="text-center sm:text-left">
-              <h2 className="text-xl font-bold text-white mb-1">
-                {user.user_metadata?.name || "Member"}
-              </h2>
-              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-sm text-neutral-500">
-                <span>{user.email}</span>
-                <span className="hidden sm:inline text-neutral-700">•</span>
-                <span>
-                  {posts.length} {posts.length === 1 ? "Story" : "Stories"}{" "}
-                  Shared
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center text-3xl font-bold text-white border border-neutral-700 shadow-2xl relative group overflow-hidden shrink-0">
+                <span className="relative z-10 uppercase">
+                  {user.user_metadata?.name?.charAt(0) ||
+                    user.email?.charAt(0) ||
+                    "U"}
                 </span>
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
 
-                <button
-                  onClick={handleLogout}
-                  className="group relative px-4 py-2.5 rounded-xl text-sm font-medium bg-white text-black hover:bg-neutral-200 transition-all duration-300"
-                >
-                  Sign out
-                  <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition bg-white/20 blur-md"></span>
-                </button>
+              <div className="text-center sm:text-left">
+                <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">
+                  {user.user_metadata?.name || "Member"}
+                </h2>
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-sm text-neutral-400">
+                  <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-800/50 border border-neutral-700/50 transition-colors hover:border-neutral-600">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="truncate max-w-[200px]">{user.email}</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-800/50 border border-neutral-700/50 text-neutral-300 transition-colors hover:border-neutral-600">
+                    <span className="font-bold text-white">
+                      {posts.length}
+                    </span>
+                    <span>{posts.length === 1 ? "Story" : "Stories"} Shared</span>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <button
+              onClick={handleLogout}
+              className="group relative flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-semibold bg-white text-black hover:bg-neutral-200 transition-all duration-300 shadow-xl shadow-white/5 active:scale-[0.98]"
+            >
+              <LogOut size={16} />
+              <span>Sign out</span>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-white/10 blur-xl -z-10" />
+            </button>
           </motion.div>
         )}
 
