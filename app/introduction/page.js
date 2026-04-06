@@ -15,7 +15,7 @@ const featuredPosts = [
     date: "Oct 24, 2026",
     readTime: "5 min read",
     image:
-      "https://plus.unsplash.com/premium_photo-1726840832490-c5e188a900f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1602292300918-897d5efee2c3?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,

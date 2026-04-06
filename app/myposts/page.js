@@ -192,10 +192,10 @@ const MyPostsPage = () => {
                   animate="visible"
                   exit={{ opacity: 0, scale: 0.95 }}
                   whileHover={{ y: -5 }}
-                  className="group relative rounded-3xl border border-neutral-800 bg-neutral-900/40 p-7 backdrop-blur-xl transition-all duration-300"
+                  className="group relative flex flex-col h-full rounded-3xl border border-neutral-800 bg-neutral-900/40 p-7 backdrop-blur-xl transition-all duration-300"
                 >
                   {post.image_url && (
-                    <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl">
+                    <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl shrink-0">
                       <img
                         src={post.image_url}
                         alt={post.title}
@@ -204,7 +204,7 @@ const MyPostsPage = () => {
                     </div>
                   )}
 
-                  <div className="flex flex-col h-full">
+                  <div className="flex flex-col flex-grow">
                     <h2 className="text-xl font-semibold text-white mb-3 line-clamp-2">
                       {post.title}
                     </h2>
