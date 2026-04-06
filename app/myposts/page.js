@@ -36,6 +36,7 @@ const MyPostsPage = () => {
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -192,7 +193,8 @@ const MyPostsPage = () => {
                   animate="visible"
                   exit={{ opacity: 0, scale: 0.95 }}
                   whileHover={{ y: -5 }}
-                  className="group relative flex flex-col h-full rounded-3xl border border-neutral-800 bg-neutral-900/40 p-7 backdrop-blur-xl transition-all duration-300"
+                  onClick={() => setSelectedPost(post)}
+                  className="group relative flex flex-col h-full rounded-3xl border border-neutral-800 bg-neutral-900/40 p-7 backdrop-blur-xl transition-all duration-300 cursor-pointer"
                 >
                   {post.image_url && (
                     <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl shrink-0">
@@ -233,6 +235,77 @@ const MyPostsPage = () => {
           </motion.div>
         )}
       </main>
+
+      {/* ================= FULL BLOG VIEW (NEW) ================= */}
+      <AnimatePresence>
+        {selectedPost && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl"
+            >
+              {/* Image */}
+              {selectedPost.image_url && (
+                <div className="overflow-hidden rounded-t-3xl">
+                  <img
+                    src={selectedPost.image_url}
+                    alt={selectedPost.title}
+                    className="w-full object-cover max-h-[400px]"
+                  />
+                </div>
+              )}
+
+              <div className="p-8">
+                <div className="mb-4 text-xs uppercase tracking-widest text-neutral-500">
+                  {new Date(selectedPost.created_at).toLocaleDateString()} •{" "}
+                  <span className="text-white">
+                    {user?.user_metadata?.name || "Me"}
+                  </span>
+                </div>
+
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  {selectedPost.title}
+                </h1>
+
+                <p className="text-neutral-300 leading-relaxed whitespace-pre-line">
+                  {selectedPost.content}
+                </p>
+
+                <div className="mt-10 flex flex-wrap items-center gap-4 pt-8 border-t border-neutral-800">
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedPost(null)}
+                    className="px-8 py-3 rounded-full border border-neutral-700 text-sm font-medium hover:bg-white hover:text-black transition-all duration-300"
+                  >
+                    Close
+                  </button>
+
+                  {/* DELETE BUTTON */}
+                  <button
+                    id="delete-post-btn-modal"
+                    onClick={async (e) => {
+                      e.stopPropagation();
+                      await handleDelete(e, selectedPost.id);
+                      setSelectedPost(null);
+                    }}
+                    className="px-8 py-3 rounded-full bg-red-600/10 border border-red-500/50 hover:bg-red-600 text-red-500 hover:text-white text-sm font-medium transition-all duration-300"
+                  >
+                    Delete Post
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
