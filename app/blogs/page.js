@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import { getPosts } from "@/lib/getPosts";
 import NavbarB from "@/components/ui/NavbarB";
 import { motion, AnimatePresence } from "framer-motion";
+import useAuth from "@/hooks/useAuth";
+import { deletePost } from "@/lib/deletePost";
+import { toast } from "sonner";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,6 +31,7 @@ const itemVariants = {
 const BlogsPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   // NEW: selected blog state (UI only, no logic change)
   const [selectedPost, setSelectedPost] = useState(null);
@@ -198,13 +202,41 @@ const BlogsPage = () => {
                   {selectedPost.content}
                 </p>
 
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedPost(null)}
-                  className="mt-10 px-6 py-3 rounded-full border border-neutral-700 text-sm hover:bg-white hover:text-black transition-all duration-300"
-                >
-                  Close
-                </button>
+                <div className="mt-10 flex flex-wrap items-center gap-4 pt-8 border-t border-neutral-800">
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedPost(null)}
+                    className="px-8 py-3 rounded-full border border-neutral-700 text-sm font-medium hover:bg-white hover:text-black transition-all duration-300"
+                  >
+                    Close
+                  </button>
+
+                  {/* DELETE BUTTON (ONLY OWNER) */}
+                  {user?.id === selectedPost.user_id && (
+                    <button
+                      id="delete-post-btn"
+                      onClick={async () => {
+                        const confirmDelete = confirm("Are you sure you want to delete this post? This action cannot be undone.");
+                        if (!confirmDelete) return;
+
+                        const { error } = await deletePost(selectedPost.id);
+
+                        if (error) {
+                          toast.error(`Error: ${error.message}`);
+                        } else {
+                          toast.success("Post deleted successfully!");
+                          setPosts((prev) =>
+                            prev.filter((p) => p.id !== selectedPost.id),
+                          );
+                          setSelectedPost(null);
+                        }
+                      }}
+                      className="px-8 py-3 rounded-full bg-red-600/10 border border-red-500/50 hover:bg-red-600 text-red-500 hover:text-white text-sm font-medium transition-all duration-300"
+                    >
+                      Delete Post
+                    </button>
+                  )}
+                </div>
               </div>
             </motion.div>
           </motion.div>
