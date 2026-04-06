@@ -163,10 +163,10 @@ const MyPostsPage = () => {
                     <span className="truncate max-w-[200px]">{user.email}</span>
                   </div>
                   <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-800/50 border border-neutral-700/50 text-neutral-300 transition-colors hover:border-neutral-600">
-                    <span className="font-bold text-white">
-                      {posts.length}
+                    <span className="font-bold text-white">{posts.length}</span>
+                    <span>
+                      {posts.length === 1 ? "Story" : "Stories"} Shared
                     </span>
-                    <span>{posts.length === 1 ? "Story" : "Stories"} Shared</span>
                   </div>
                 </div>
               </div>
@@ -251,7 +251,7 @@ const MyPostsPage = () => {
                       <button
                         onClick={(e) => handleDelete(e, post.id)}
                         className="p-2.5 rounded-full bg-red-600/10 text-red-500 border border-red-500/20 hover:bg-red-600 hover:text-white transition-all duration-300"
-                        title="Delete Post"
+                        title="Delete Blog"
                       >
                         <Trash2 size={16} />
                       </button>

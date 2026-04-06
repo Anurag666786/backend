@@ -55,7 +55,7 @@ export default function Navbar() {
       href: "/myposts",
     },
     {
-      name: "Blogs",
+      name: "Dashboard",
       href: "/blogs",
     },
     {
