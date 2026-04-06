@@ -58,7 +58,9 @@ const MyPostsPage = () => {
 
   const handleDelete = async (e, postId) => {
     e.stopPropagation();
-    const confirmDelete = confirm("Are you sure you want to delete this post? This action cannot be undone.");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this post? This action cannot be undone.",
+    );
     if (!confirmDelete) return;
 
     const { error } = await deletePost(postId);
@@ -108,14 +110,18 @@ const MyPostsPage = () => {
             variants={itemVariants}
             className="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6"
           >
-            My <span className="text-neutral-500 italic">Stories</span>
+            My{" "}
+            <span className="text-neutral-500 italic animate-pulse">
+              Stories
+            </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
             className="max-w-2xl mx-auto text-lg text-neutral-400"
           >
-            A collection of all the thoughts and insights you have shared with the community.
+            A collection of all the thoughts and insights you have shared with
+            the community.
           </motion.p>
         </motion.div>
 
@@ -128,7 +134,9 @@ const MyPostsPage = () => {
             className="mb-12 inline-flex flex-col items-center sm:flex-row gap-6 px-8 py-6 rounded-3xl border border-neutral-800 bg-neutral-900/40 backdrop-blur-xl"
           >
             <div className="h-16 w-16 rounded-full bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center text-2xl font-bold text-white border border-neutral-700 shadow-inner">
-              {user.user_metadata?.name?.charAt(0) || user.email?.charAt(0) || "U"}
+              {user.user_metadata?.name?.charAt(0) ||
+                user.email?.charAt(0) ||
+                "U"}
             </div>
             <div className="text-center sm:text-left">
               <h2 className="text-xl font-bold text-white mb-1">
@@ -137,7 +145,10 @@ const MyPostsPage = () => {
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-sm text-neutral-500">
                 <span>{user.email}</span>
                 <span className="hidden sm:inline text-neutral-700">•</span>
-                <span>{posts.length} {posts.length === 1 ? 'Story' : 'Stories'} Shared</span>
+                <span>
+                  {posts.length} {posts.length === 1 ? "Story" : "Stories"}{" "}
+                  Shared
+                </span>
               </div>
             </div>
           </motion.div>
@@ -151,13 +162,17 @@ const MyPostsPage = () => {
             className="flex flex-col items-center justify-center rounded-3xl border border-neutral-800 bg-neutral-900/40 p-16 text-center backdrop-blur-xl"
           >
             <div className="mb-6 text-5xl">🌑</div>
-            <h3 className="text-xl font-semibold text-white mb-2">No posts found</h3>
-            <p className="text-neutral-500 mb-8">You haven't shared any stories yet.</p>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              No posts found
+            </h3>
+            <p className="text-neutral-500 mb-8">
+              You haven't shared any stories yet.
+            </p>
             <button
-               onClick={() => router.push("/createblog")}
-               className="px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition-colors"
+              onClick={() => router.push("/createblog")}
+              className="px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition-colors"
             >
-               Create Your First Post
+              Create Your First Post
             </button>
           </motion.div>
         ) : (
