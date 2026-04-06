@@ -108,11 +108,11 @@ const CreateBlog = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-widest text-neutral-500">
-                Dashboard
+                Begin your journey by writing blogs
               </p>
 
               <h1 className="text-3xl md:text-4xl font-bold text-white mt-2">
-                Welcome back,{" "}
+                Welcome{" "}
                 <span className="text-neutral-400 animate-pulse">
                   {user.user_metadata?.name}
                 </span>

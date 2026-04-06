@@ -6,6 +6,7 @@ import useAuth from "@/hooks/useAuth";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import NavbarB from "@/components/ui/NavbarB";
+import client from "@/api/client";
 import { deletePost } from "@/lib/deletePost";
 import { toast } from "sonner";
 import { Trash2 } from "lucide-react";
@@ -56,7 +57,15 @@ const MyPostsPage = () => {
     setPosts(data || []);
     setLoading(false);
   };
-
+  const handleLogout = async () => {
+    const { error } = await client.auth.signOut();
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Logged out successfully");
+      router.push("/");
+    }
+  };
   const handleDelete = async (e, postId) => {
     e.stopPropagation();
     const confirmDelete = confirm(
@@ -150,6 +159,14 @@ const MyPostsPage = () => {
                   {posts.length} {posts.length === 1 ? "Story" : "Stories"}{" "}
                   Shared
                 </span>
+
+                <button
+                  onClick={handleLogout}
+                  className="group relative px-4 py-2.5 rounded-xl text-sm font-medium bg-white text-black hover:bg-neutral-200 transition-all duration-300"
+                >
+                  Sign out
+                  <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition bg-white/20 blur-md"></span>
+                </button>
               </div>
             </div>
           </motion.div>
