@@ -251,7 +251,7 @@ const MyPostsPage = () => {
                       <button
                         onClick={(e) => handleDelete(e, post.id)}
                         className="p-2.5 rounded-full bg-red-600/10 text-red-500 border border-red-500/20 hover:bg-red-600 hover:text-white transition-all duration-300"
-                        title="Delete Blog"
+                        title="Delete Post"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -326,7 +326,7 @@ const MyPostsPage = () => {
                     }}
                     className="px-8 py-3 rounded-full bg-red-600/10 border border-red-500/50 hover:bg-red-600 text-red-500 hover:text-white text-sm font-medium transition-all duration-300"
                   >
-                    Delete Post
+                    Delete Blog
                   </button>
                 </div>
               </div>

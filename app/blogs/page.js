@@ -216,7 +216,9 @@ const BlogsPage = () => {
                     <button
                       id="delete-post-btn"
                       onClick={async () => {
-                        const confirmDelete = confirm("Are you sure you want to delete this post? This action cannot be undone.");
+                        const confirmDelete = confirm(
+                          "Are you sure you want to delete this post? This action cannot be undone.",
+                        );
                         if (!confirmDelete) return;
 
                         const { error } = await deletePost(selectedPost.id);
@@ -233,7 +235,7 @@ const BlogsPage = () => {
                       }}
                       className="px-8 py-3 rounded-full bg-red-600/10 border border-red-500/50 hover:bg-red-600 text-red-500 hover:text-white text-sm font-medium transition-all duration-300"
                     >
-                      Delete Post
+                      Delete Blog
                     </button>
                   )}
                 </div>
