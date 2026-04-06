@@ -119,6 +119,30 @@ const MyPostsPage = () => {
           </motion.p>
         </motion.div>
 
+        {/* Profile Details Section */}
+        {user && (
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            className="mb-12 inline-flex flex-col items-center sm:flex-row gap-6 px-8 py-6 rounded-3xl border border-neutral-800 bg-neutral-900/40 backdrop-blur-xl"
+          >
+            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center text-2xl font-bold text-white border border-neutral-700 shadow-inner">
+              {user.user_metadata?.name?.charAt(0) || user.email?.charAt(0) || "U"}
+            </div>
+            <div className="text-center sm:text-left">
+              <h2 className="text-xl font-bold text-white mb-1">
+                {user.user_metadata?.name || "Member"}
+              </h2>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-sm text-neutral-500">
+                <span>{user.email}</span>
+                <span className="hidden sm:inline text-neutral-700">•</span>
+                <span>{posts.length} {posts.length === 1 ? 'Story' : 'Stories'} Shared</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {posts.length === 0 ? (
           <motion.div
             variants={itemVariants}
