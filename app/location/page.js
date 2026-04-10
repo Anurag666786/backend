@@ -12,6 +12,7 @@ const Page = () => {
           fill
           className="object-cover"
           priority
+          unoptimized
         />
       </div>
     </main>
