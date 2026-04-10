@@ -244,6 +244,42 @@ export default function Page() {
           content.{" "}
         </p>
       </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="py-36 px-8 max-w-4xl mx-auto text-center"
+      >
+        <h2 className="text-5xl font-bold text-white mb-6">
+          Anurag Developers ©
+        </h2>
+
+        <p className="text-neutral-400 mb-10">
+          Anurag Developers © is a professional web development firm committed
+          to delivering enterprise-grade digital solutions that drive measurable
+          business outcomes. We design and develop high-performance web
+          applications tailored to meet the evolving demands of modern
+          organizations. Our expertise spans full-stack development, scalable
+          architecture, performance optimization, and user-centric interface
+          design. Every solution we build is engineered with precision, ensuring
+          reliability, security, and long-term sustainability. We emphasize
+          clean code standards, structured development processes, and strategic
+          execution to guarantee quality at every stage of the project
+          lifecycle. At Anurag Developers, we understand that technology is not
+          just about functionality — it is about enabling growth, efficiency,
+          and competitive advantage. Our development approach is guided by
+          careful analysis, technical excellence, and a commitment to delivering
+          solutions that align with our clients’ strategic objectives. We
+          collaborate closely with businesses to transform complex challenges
+          into streamlined digital systems. From concept to deployment, our team
+          prioritizes transparency, accountability, and consistent communication
+          to ensure successful project delivery. With a focus on innovation,
+          operational excellence, and long-term value creation, Anurag
+          Developers serves as a trusted technology partner for organizations
+          seeking dependable, scalable, and future-ready web solutions.{" "}
+        </p>
+      </motion.section>
     </main>
   );
 }
