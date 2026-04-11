@@ -3,6 +3,16 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Pencil,
+  Eye,
+  Palette,
+  Search,
+  BarChart3,
+  Users,
+  ChevronRight,
+  Zap,
+} from "lucide-react";
 
 // Animation system (same feel as homepage)
 const container = {
@@ -279,6 +289,48 @@ export default function Page() {
           Developers serves as a trusted technology partner for organizations
           seeking dependable, scalable, and future-ready web solutions.{" "}
         </p>
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-6xl mx-auto px-8 pb-32"
+      >
+        <div className="relative rounded-[2.5rem] overflow-hidden border border-neutral-800 bg-neutral-900/40 backdrop-blur-2xl shadow-2xl">
+          {/* Animated Background gradients inside CTA */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+          <motion.div
+            animate={{ x: ["0%", "50%", "0%"], y: ["0%", "30%", "0%"] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 right-0 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl"
+          />
+
+          <div className="relative p-12 md:p-16 lg:p-20 text-center md:flex md:items-center md:justify-between md:text-left z-10">
+            <div className="md:w-2/3">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                Join us now for the best web Solutions and Production builts.
+              </h2>
+              <p className="text-lg text-neutral-400 max-w-xl">
+                We build fast, scalable, and secure web applications tailored to
+                your business needs. From custom web development to enterprise
+                solutions, our team delivers high-quality results that drive
+                growth and innovation. Let's create something extraordinary
+                together.
+              </p>
+            </div>
+            <div className="mt-10 md:mt-0 flex justify-center md:justify-end md:w-1/3">
+              <Link
+                href="https://anurag-developers.vercel.app/"
+                className="group flex items-center justify-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-neutral-200 transition-all duration-300"
+              >
+                Join Us
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </motion.section>
     </main>
   );
