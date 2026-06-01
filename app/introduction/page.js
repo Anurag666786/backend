@@ -83,37 +83,135 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl mb-32"
+          className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-32"
         >
-          <motion.h1
+          {/* Text Content */}
+          <div className="max-w-3xl">
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.1] mb-6"
+            >
+              Ideas that shape <br className="hidden md:block" />
+              <span className="text-neutral-500 animate-pulse">
+                the modern mind
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl mb-10"
+            >
+              A curated space for deep thinkers, creators, and restless minds.
+              Exploring the intersection of design, technology, and intentional
+              living.
+            </motion.p>
+
+            {/* Get Started Button */}
+            <motion.div variants={itemVariants}>
+              <button className="group relative inline-flex items-center justify-center px-9 py-3 text-md font-medium text-black bg-white/100 border border-white/10 rounded-xl backdrop-blur-md hover:bg-white/70 transition-all duration-300">
+                <Link href="./createblog" className="relative z-10">
+                  Get Started →
+                </Link>
+
+                {/* Subtle glow effect */}
+                <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition duration-300 bg-white/10 blur-md"></span>
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Hero Image */}
+          <motion.div
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.1] mb-6"
+            animate={{
+              y: [0, -12, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="w-full lg:w-1/2 flex justify-center lg:justify-end"
           >
-            Ideas that shape <br className="hidden md:block" />
-            <span className="text-neutral-500 animate-pulse">
-              the modern mind
-            </span>
-          </motion.h1>
+            <div className="relative w-full max-w-md aspect-square">
+              {/* Animated Glow */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/40 via-pink-500/30 to-cyan-500/40 blur-3xl"
+              />
 
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl mb-10"
-          >
-            A curated space for deep thinkers, creators, and restless minds.
-            Exploring the intersection of design, technology, and intentional
-            living.
-          </motion.p>
+              {/* Image Container */}
+              <div className="relative h-full w-full rounded-3xl overflow-hidden group border border-white/10 backdrop-blur-sm shadow-2xl">
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20" />
 
-          {/* Get Started Button */}
-          <motion.div variants={itemVariants}>
-            <button className="group relative inline-flex items-center justify-center px-9 py-3 text-md font-medium text-black bg-white/100 border border-white/10 rounded-xl backdrop-blur-md hover:bg-white/70 transition-all duration-300">
-              <Link href="./createblog" className="relative z-10">
-                Get Started →
-              </Link>
+                {/* Shimmer Effect */}
+                <motion.div
+                  animate={{
+                    x: ["-150%", "290%"],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute top-0 left-0 w-1/3 h-full bg-white/20 blur-xl rotate-12 z-20"
+                />
 
-              {/* Subtle glow effect */}
-              <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition duration-300 bg-white/10 blur-md"></span>
-            </button>
+                {/* Floating Particles */}
+                {[...Array(25)].map((_, i) => {
+                  const size = 2 + (i % 3) * 1.5;
+                  const top = (i * 17) % 100;
+                  const left = (i * 23) % 100;
+                  const yMax = -(10 + (i % 5) * 6);
+                  const xMax = (i % 3) * 10 - 10;
+                  const duration = 2 + (i % 4) * 0.8;
+                  const delay = (i % 5) * 0.4;
+                  return (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        y: [0, yMax, 0],
+                        x: [0, xMax, 0],
+                        opacity: [0.1, 0.8, 0.1],
+                        scale: [0.8, 1.3, 0.8],
+                      }}
+                      transition={{
+                        duration: duration,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: delay,
+                      }}
+                      className="absolute rounded-full bg-white/60 z-20"
+                      style={{
+                        width: `${size}px`,
+                        height: `${size}px`,
+                        top: `${top}%`,
+                        left: `${left}%`,
+                      }}
+                    />
+                  );
+                })}
+
+                {/* Image */}
+                <Image
+                  src="/BlogerZ.png"
+                  alt="BlogerZ Logo"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 448px"
+                  className="object-cover transition-all duration-1000 ease-out group-hover:scale-110 group-hover:-translate-y-2"
+                />
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -153,6 +251,7 @@ export default function Home() {
                     src={post.image}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
 
