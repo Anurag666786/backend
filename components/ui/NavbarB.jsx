@@ -79,7 +79,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 group cursor-pointer">
             <span className="font-bold text-3xl tracking-tighter text-foreground transition-colors group-hover:text-primary/80">
-              BlogerZ<span className="text-primary"></span>
+              🖆 BlogerZ<span className="text-primary"></span>
             </span>
           </div>
 
