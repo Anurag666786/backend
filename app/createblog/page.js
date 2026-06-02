@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { uploadImage } from "@/lib/uploadImage";
 import { createPost } from "@/lib/createPost";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -174,6 +176,45 @@ const CreateBlog = () => {
               >
                 Publish
                 <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition bg-white/20 blur-md"></span>
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Call to action */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 relative rounded-[1.5rem] overflow-hidden border border-border/50 bg-card/60 backdrop-blur-xl shadow-2xl"
+        >
+          {/* Animated Background gradients inside CTA */}
+          <div className="absolute inset-0 border-neutral-800 bg-neutral-900/60 backdrop-blur-xl p-8 overflow-hidden" />
+          <motion.div
+            animate={{ x: ["0%", "50%", "0%"], y: ["0%", "30%", "0%"] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
+          />
+
+          <div className="relative p-10 md:p-16 lg:p-10 text-center md:flex md:items-center md:justify-between md:text-left z-10">
+            <div className="md:w-2/3">
+              <h2 className="text-3xl md:text-4xl lg:text-2xl font-bold text-foreground mb-3 tracking-tight">
+                Want to see your posts?
+              </h2>
+              <p className="text-lg lg:text-xl text-muted-foreground/90 max-w-xl">
+                Visit or manage your all blogs you have created by clicking here
+                or selecting My Blogs in navbar.
+              </p>
+            </div>
+            <div className="mt-10 md:mt-0 flex justify-center md:justify-end md:w-1/3">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-5 bg-foreground text-background font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 group"
+              >
+                <Link href="./myposts">Check out</Link>
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
               </motion.button>
             </div>
           </div>

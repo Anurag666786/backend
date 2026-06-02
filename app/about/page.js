@@ -309,7 +309,7 @@ export default function Page() {
 
           <div className="relative p-12 md:p-16 lg:p-20 text-center md:flex md:items-center md:justify-between md:text-left z-10">
             <div className="md:w-2/3">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              <h2 className="text-4xl md:text-4xl font-bold text-white mb-6 tracking-tight">
                 Join us now for the best web Solutions and Production builts.
               </h2>
               <p className="text-lg text-neutral-400 max-w-xl">
@@ -323,7 +323,7 @@ export default function Page() {
             <div className="mt-10 md:mt-0 flex justify-center md:justify-end md:w-1/3">
               <Link
                 href="https://anurag-developers.vercel.app/"
-                className="group flex items-center justify-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-neutral-200 transition-all duration-300"
+                className="group flex items-center justify-center gap-2 px-10 py-6 bg-white text-black rounded-full font-semibold hover:bg-neutral-200 transition-all duration-300"
               >
                 Join Us
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
